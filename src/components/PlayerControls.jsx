@@ -9,6 +9,7 @@ import { MdOutlinePlayCircle } from "react-icons/md";
 import { FaRegPauseCircle } from "react-icons/fa";
 import { SongState } from "../context/songContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function PlayerControls() {
   const {
@@ -58,8 +59,9 @@ function PlayerControls() {
       if (isAlredyAddedTofavourite.length < 1) {
         favouriteSongs.push({ ...song });
         localStorage.setItem("favouriteSongs", JSON.stringify(favouriteSongs));
+        toast.success("Song added to favourites");
       } else {
-        return;
+        toast.error("This song is already in favourites list");
       }
     }
   };
@@ -85,14 +87,19 @@ function PlayerControls() {
       prevSong = songsToBeDisplayed[songsToBeDisplayed.length - 1];
       setSong({ ...prevSong });
     } else {
-      let prevSongs = songsToBeDisplayed?.filter((s) => s.id === song.id - 1);
-      prevSong = prevSongs[0];
+      let idx = songsToBeDisplayed.indexOf(
+        songsToBeDisplayed?.find((s) => s.id === song.id)
+      );
+      prevSong = songsToBeDisplayed[idx - 1];
       setSong({ ...prevSong });
     }
 
     console.log(prevSong);
+    console.log(songItems[songsToBeDisplayed.indexOf(prevSong)]);
 
-    songItems[prevSong.id - 1].classList.add("active-song-item");
+    songItems[songsToBeDisplayed.indexOf(prevSong)].classList.add(
+      "active-song-item"
+    );
 
     const newAudio = new Audio(prevSong.path);
     newAudio.play();
@@ -115,16 +122,22 @@ function PlayerControls() {
     });
 
     let nextSong;
-    if (song.id === songsToBeDisplayed.length) {
+    if (song.id === songsToBeDisplayed[songsToBeDisplayed.length - 1].id) {
       nextSong = songsToBeDisplayed[0];
       setSong({ ...nextSong });
     } else {
-      let nextSongs = songsToBeDisplayed?.filter((s) => s.id === song.id + 1);
-      nextSong = nextSongs[0];
+      // let nextSongs = songsToBeDisplayed?.filter((s) => s.id === song.id + 1);
+      // nextSong = nextSongs[0];
+      let idx = songsToBeDisplayed.indexOf(
+        songsToBeDisplayed?.find((s) => s.id === song.id)
+      );
+      nextSong = songsToBeDisplayed[idx + 1];
       setSong({ ...nextSong });
     }
 
-    songItems[nextSong.id - 1].classList.add("active-song-item");
+    songItems[songsToBeDisplayed.indexOf(nextSong)].classList.add(
+      "active-song-item"
+    );
 
     console.log(nextSong);
 

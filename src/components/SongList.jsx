@@ -26,9 +26,13 @@ function SongList() {
     songsToBeDisplayed,
     setSongsToBeDisplayed,
   } = SongState();
+  const [activeNavLink, setActiveNavLink] = useState();
+
+  useEffect(() => {
+    setActiveNavLink(document.querySelector(".active-nav-link"));
+  });
 
   let allSongs;
-
   if (location.href.includes("favourites")) {
     allSongs = JSON.parse(localStorage.getItem("favouriteSongs"));
   } else if (location.href.includes("recently-played")) {
@@ -71,7 +75,7 @@ function SongList() {
     const newAudio = new Audio(initialSong.path);
 
     setAudio(newAudio);
-  }, [songsToBeDisplayed]);
+  }, [activeNavLink]);
 
   // change song and audio on click
   const changeSong = (e, song) => {

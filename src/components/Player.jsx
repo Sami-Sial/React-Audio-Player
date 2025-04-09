@@ -24,12 +24,6 @@ function Player() {
             height={30}
             width={100}
           />
-          <div style={{ fontFamily: "arial", cursor: "pointer" }}>
-            Songs For You
-          </div>
-          <div style={{ fontSize: "25px", cursor: "pointer" }}>
-            <GiHamburgerMenu />
-          </div>
         </div>
 
         <Row>

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
-    <Stack direction="vertical" gap={1}>
+    <div id="navigation">
       <NavLink
         className={({ isActive }) =>
           isActive ? "active-nav-link" : "inactive-nav-link"
@@ -41,7 +41,7 @@ function Navigation() {
       >
         Recently Played
       </NavLink>
-    </Stack>
+    </div>
   );
 }
 

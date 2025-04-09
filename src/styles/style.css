@@ -5,6 +5,11 @@
   font-family: "Courier New", Courier, monospace;
   overflow-x: hidden;
 }
+#navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .song-item {
   display: flex;
   align-items: center;
@@ -39,9 +44,11 @@
   background-color: inherit;
 }
 @media screen and (max-width: 815px) {
-  #sidebar,
-  #song-list {
-    display: none;
+  #navigation {
+    flex-direction: row;
+  }
+  #navigation {
+    display: flex;
   }
   #player {
     width: 100vw;

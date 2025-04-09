@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden;
+}
+.song-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: white;
+  padding: 3px 10px;
+}
+.song-item:hover {
+  background-color: #202c33;
+  border-radius: 10px;
+}
+
+#mobile-screen-navbar {
+  display: none;
+  color: white;
+  border-bottom: 1px solid #202c33;
+}
+.active-nav-link {
+  opacity: 1;
+  color: white;
+}
+.inactive-nav-link {
+  opacity: 0.5;
+  color: lightgrey;
+}
+
+.active-song-item {
+  background-color: #202c33;
+  border-radius: 10px;
+}
+.inactive-song-item {
+  background-color: inherit;
+}
+@media screen and (max-width: 815px) {
+  #sidebar,
+  #song-list {
+    display: none;
+  }
+  #player {
+    width: 100vw;
+  }
+  #mobile-screen-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

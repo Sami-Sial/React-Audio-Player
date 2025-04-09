@@ -14,7 +14,7 @@ function Player() {
       <Container
         fluid
         style={{ height: "100vh" }}
-        className="bg-black px-2 py-3"
+        className="bg-black px-2 py-2"
       >
         <div id="mobile-screen-navbar">
           <img
@@ -27,7 +27,7 @@ function Player() {
         </div>
 
         <Row>
-          <Col id="sidebar" md="2" style={{ width: "200px" }}>
+          <Col id="sidebar" md="2">
             <img
               className="mb-2"
               src="https://cdn.builder.io/api/v1/image/assets/40ceeeb9dd6840078a07bfb9b0e1f993/d736870f4881cb77a84302238e6a16af84a38412?placeholderIfAbsent=true"
@@ -40,7 +40,7 @@ function Player() {
             </div>
           </Col>
 
-          <Col id="song-list" md="4">
+          <Col id="songs-list" md="4">
             <SongList />
           </Col>
 

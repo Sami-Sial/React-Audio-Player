@@ -9,7 +9,7 @@ function Navigation() {
         className={({ isActive }) =>
           isActive ? "active-nav-link" : "inactive-nav-link"
         }
-        style={{ color: "white", textDecoration: "none", fontSize: "16px" }}
+        style={{ color: "white", textDecoration: "none" }}
         to={"/"}
       >
         For You
@@ -18,7 +18,7 @@ function Navigation() {
         className={({ isActive }) =>
           isActive ? "active-nav-link" : "inactive-nav-link"
         }
-        style={{ textDecoration: "none", fontSize: "16px" }}
+        style={{ textDecoration: "none" }}
         to={"/top-tracks"}
       >
         Top Tracks
@@ -27,7 +27,7 @@ function Navigation() {
         className={({ isActive }) =>
           isActive ? "active-nav-link" : "inactive-nav-link"
         }
-        style={{ textDecoration: "none", fontSize: "16px" }}
+        style={{ textDecoration: "none" }}
         to={"/favourites"}
       >
         Favourites
@@ -36,7 +36,7 @@ function Navigation() {
         className={({ isActive }) =>
           isActive ? "active-nav-link" : "inactive-nav-link"
         }
-        style={{ textDecoration: "none", fontSize: "16px" }}
+        style={{ textDecoration: "none" }}
         to={"/recently-played"}
       >
         Recently Played

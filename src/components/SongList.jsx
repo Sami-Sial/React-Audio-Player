@@ -50,31 +50,33 @@ function SongList() {
   // set initial song and audio
   let initialSong;
   useEffect(() => {
-    initialSong = songsToBeDisplayed[0];
+    if (songsToBeDisplayed) {
+      initialSong = songsToBeDisplayed[0];
 
-    if (audio) {
-      audio.pause();
-      setAudio(null);
-      setSongCurrTime(0);
-      setIsSongPlaying(false);
+      if (audio) {
+        audio.pause();
+        setAudio(null);
+        setSongCurrTime(0);
+        setIsSongPlaying(false);
+      }
+
+      // navigate(`?song=${initialSong?.title}`);
+
+      const songItems = document.querySelectorAll(".song-item");
+      songItems.forEach((s) => {
+        s.classList.remove("active-song-item");
+      });
+
+      document.querySelector(".song-item").classList.add("active-song-item");
+
+      setSong({
+        ...initialSong,
+      });
+
+      const newAudio = new Audio(initialSong.path);
+
+      setAudio(newAudio);
     }
-
-    // navigate(`?song=${initialSong?.title}`);
-
-    const songItems = document.querySelectorAll(".song-item");
-    songItems.forEach((s) => {
-      s.classList.remove("active-song-item");
-    });
-
-    document.querySelector(".song-item").classList.add("active-song-item");
-
-    setSong({
-      ...initialSong,
-    });
-
-    const newAudio = new Audio(initialSong.path);
-
-    setAudio(newAudio);
   }, [activeNavLink]);
 
   // change song and audio on click
@@ -154,22 +156,23 @@ function SongList() {
         <SearchBar />
       </div>
       <div className="mt-2">
-        {songsToBeDisplayed?.map((song) => (
-          <NavLink
-            to={`?song=${song.title}`}
-            style={{ textDecoration: "none", fontSize: "13px" }}
-            className="d-flex align-items-center my-1 text-white song-item  px-1 py-1"
-            onClick={(e) => changeSong(e, song)}
-          >
-            <SongItem
-              image={song.image}
-              title={song.title}
-              artist={song.artist}
-              duration={song.duration}
-              path={song.path}
-            />
-          </NavLink>
-        ))}
+        {songsToBeDisplayed &&
+          songsToBeDisplayed?.map((song) => (
+            <NavLink
+              to={`?song=${song.title}`}
+              style={{ textDecoration: "none", fontSize: "13px" }}
+              className="d-flex align-items-center my-1 text-white song-item  px-1 py-1"
+              onClick={(e) => changeSong(e, song)}
+            >
+              <SongItem
+                image={song.image}
+                title={song.title}
+                artist={song.artist}
+                duration={song.duration}
+                path={song.path}
+              />
+            </NavLink>
+          ))}
       </div>
     </div>
   );
